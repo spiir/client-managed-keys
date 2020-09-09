@@ -22,7 +22,7 @@
   <ItemGroup>
     <EmbeddedResource Include="DemoKey.pfx" />
     <None Remove="SwaggerIntro.md" />
-    <EmbeddedResource Include="SwaggerIntro.md" />
+    <EmbeddedResource Include="README.md" />
     <None Remove="DemoKey.pfx" />
   </ItemGroup>
 </Project>

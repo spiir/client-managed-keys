@@ -48,7 +48,7 @@ namespace ClientManagedKeys.Server
                 {
                     Title = "Client Managed Keys (v1)",
                     Version = "v1",
-                    Description = Encoding.UTF8.GetString(typeof(Startup).Assembly.GetResourceAsBytes("SwaggerIntro.md"))
+                    Description = Encoding.UTF8.GetString(typeof(Startup).Assembly.GetResourceAsBytes("README.md"))
                 });
 
                 c.TagActionsBy(description => new List<string>()
