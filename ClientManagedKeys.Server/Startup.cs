@@ -46,7 +46,7 @@ namespace ClientManagedKeys.Server
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Client Managed Keys (v1)",
+                    Title = "Client Managed Keys",
                     Version = "v1",
                     Description = Encoding.UTF8.GetString(typeof(Startup).Assembly.GetResourceAsBytes("README.md"))
                 });
