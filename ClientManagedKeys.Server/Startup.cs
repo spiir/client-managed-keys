@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Text.Json.Serialization;
 using ClientManagedKeys.Server.Authentication;
 using ClientManagedKeys.Server.Services;
@@ -47,7 +48,7 @@ namespace ClientManagedKeys.Server
                 {
                     Title = "Client Managed Keys (v1)",
                     Version = "v1",
-                    Description = @"*Reference server implementation for Client Managed Keys*"
+                    Description = Encoding.UTF8.GetString(typeof(Startup).Assembly.GetResourceAsBytes("SwaggerIntro.md"))
                 });
 
                 c.TagActionsBy(description => new List<string>()
