@@ -11,6 +11,12 @@ namespace ClientManagedKeys.Models
         public string CorrelationId { get; set; }
         
         /// <summary>
+        /// Provider ID for the request.
+        /// </summary>
+        [Required]
+        public string ProviderId { get; set; }
+        
+        /// <summary>
         /// Client ID of the client performing the request.
         /// </summary>
         [Required]
@@ -23,7 +29,7 @@ namespace ClientManagedKeys.Models
         public byte[] Payload { get; set; }
         
         /// <summary>
-        /// Operation triggering the request.
+        /// Operation triggering the request, for logging purposes.
         /// </summary>
         [Required]
         public string Operation { get; set; }

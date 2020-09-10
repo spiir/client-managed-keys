@@ -31,6 +31,8 @@ All servers implementing this specification MUST NOT reject signing requests for
  
 `TkFHQ2xpZW50TWFuYWdlZEtleXNWZXJpZmljYXRpb24=` (in ASCII `NAGClientManagedKeysVerification`)
 
+This test vector is used for regularly verifying and testing system health.
+
 **Demo Key Material**
 
 The server is preloaded with a demo key in `DemoKey.pfx` (password `test`). 
@@ -71,6 +73,7 @@ curl --location --request POST 'https://localhost:5001/v1/0e4085c0ae94078ad8992e
 --data-raw '{
     "algorithm": "RS256",
     "clientId": "client-9778a952-4f22-4a57-abaa-61f99e14869a",
+    "providerId": "XX_DemoBank",
     "correlationId": "|9e74f0e5-efc4-41b5-86d1-3524a43bd891.bcec871c_1.",
     "operation": "SupervisedLogin",
     "payload": "TkFHQ2xpZW50TWFuYWdlZEtleXNWZXJpZmljYXRpb24="
@@ -93,6 +96,7 @@ curl --location --request POST 'https://localhost:5001/v1/0e4085c0ae94078ad8992e
 --data-raw '{
     "algorithm": "RSA-OAEP-256",
     "clientId": "client-9778a952-4f22-4a57-abaa-61f99e14869a",
+    "providerId": "XX_DemoBank",
     "correlationId": "|9e74f0e5-efc4-41b5-86d1-3524a43bd891.bcec871c_1.",
     "operation": "SupervisedLogin",
     "payload": "mpBi7+q9XvpDWm3VOnyU1si1lpIqEPw0lGfZrNiONpg5rhZADmoIYwf96wXyZKXggBsfxQNd54KBtZ2ZgfFvnR6ONmMDtQiohGJUA7lKShnFIgllC7sC+PgN2i+BEXTZoWEfXJz4NtYf+PlPKdfit63WGP5rvpJaRbo3/cn0JaPUOqIRwbkx6dd46dt1d+zFiu993SiTXm1LxvEw1ZFGf0fd110THskkXOcFWxJO1Yg9wtUMihrB0hOJ97Kfdt8CjOiMiIAVAIyqXCrQvLiNivVEAmorsRTu2OC832/EmfnTu+fdK5zgquFM9ujymyS3ZbcpMe96IJmZmxsu+DEm5w=="
