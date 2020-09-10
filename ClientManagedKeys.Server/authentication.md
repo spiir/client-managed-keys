@@ -1,0 +1,1 @@
+API Key based scheme will be replaced by HTTP Signatures
