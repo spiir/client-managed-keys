@@ -9,5 +9,11 @@ namespace ClientManagedKeys.Models
         /// </summary>
         [Required]
         public JwsAlgorithm Algorithm { get; set; }
+        
+        /// <summary>
+        /// Hashed bytes for the signature, output from the hash algorithm underlying the signature scheme, base64 encoded.
+        /// </summary>
+        [Required]
+        public override byte[] Payload { get; set; }
     }
 }

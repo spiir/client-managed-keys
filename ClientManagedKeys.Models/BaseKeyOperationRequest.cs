@@ -22,11 +22,7 @@ namespace ClientManagedKeys.Models
         [Required]
         public string ClientId { get; set; }
         
-        /// <summary>
-        /// Payload request, base64 encoded.
-        /// </summary>
-        [Required]
-        public byte[] Payload { get; set; }
+        public abstract byte[] Payload { get; set; }
         
         /// <summary>
         /// Operation triggering the request, for logging purposes.
