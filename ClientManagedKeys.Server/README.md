@@ -1,6 +1,16 @@
-*Client Managed Keys reference server implementation*
+# Client Managed Keys Reference Server
+For connecting to APIs on behalf of its clients, Nordic API Gateway needs to
+perform cryptographic operations on behalf of the client. 
+
+For added security, Nordic API Gateway can proxy signing and decryption to
+a client managed service, removing the need to Nordic API Gateway to be in possession
+of the private keys and enabling the client to audit and control access to the
+keys. 
+
+This project is a reference implementation of the proxy protocol supported by 
+Nordic API Gateway.
  
-**Response status codes**
+## Response status codes
 
 Implementations MUST use HTTP status codes as the primary means of communicating success / failure.
 
@@ -25,7 +35,7 @@ Implementations MUST use HTTP status codes as the primary means of communicating
 
 Implementations SHOULD populate the `message` property of the error message when possible.
  
-**Operational requirements**
+## Operational requirements
  
 All servers implementing this specification MUST NOT reject signing requests for the specific payload:
  
@@ -33,7 +43,7 @@ All servers implementing this specification MUST NOT reject signing requests for
 
 This test vector is used for regularly verifying and testing system health.
 
-**Demo Key Material**
+## Demo Key Material
 
 The server is preloaded with a demo key in `DemoKey.pfx` (password `test`). 
 The key has the following certificate:
@@ -62,9 +72,9 @@ Thumbprint / keyId is: `0e4085c0ae94078ad8992e3fdf6ebffb707ffa8a`
 
 The corresponding private can be extracted from the PFX file.
 
-**Examples / test-vectors**
+## Examples / test-vectors
 
-*Signing*
+### Signing
 
 ````shell
 curl --location --request POST 'https://localhost:5001/v1/0e4085c0ae94078ad8992e3fdf6ebffb707ffa8a/sign' \
@@ -87,7 +97,7 @@ Results in the response
 }
 ````
 
-*Decryption*
+### Decryption
 
 ````shell
 curl --location --request POST 'https://localhost:5001/v1/0e4085c0ae94078ad8992e3fdf6ebffb707ffa8a/decrypt' \
@@ -103,4 +113,10 @@ curl --location --request POST 'https://localhost:5001/v1/0e4085c0ae94078ad8992e
 }'
 ````
 
-Results in the response: `{"payload":"SGVsbG8gd29ybGQK"}` which decodes to `Hello world`.
+Results in the response: 
+
+```
+{"payload":"SGVsbG8gd29ybGQK"}
+``` 
+
+which decodes to `Hello world`.

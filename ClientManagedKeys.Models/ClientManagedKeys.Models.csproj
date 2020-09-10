@@ -4,6 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <RootNamespace>ClientManagedKeys.Models</RootNamespace>
+        <NoWarn>$(NoWarn);CS1591</NoWarn>
     </PropertyGroup>
 
 </Project>
