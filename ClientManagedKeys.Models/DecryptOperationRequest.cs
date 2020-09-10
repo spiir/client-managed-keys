@@ -9,5 +9,11 @@ namespace ClientManagedKeys.Models
         /// </summary>
         [Required]
         public JweAlgorithm Algorithm { get; set; }
+        
+        /// <summary>
+        /// Payload bytes for the decryption request, base64 encoded.
+        /// </summary>
+        [Required]
+        public override byte[] Payload { get; set; }
     }
 }
