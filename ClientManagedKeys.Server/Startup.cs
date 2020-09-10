@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using ClientManagedKeys.Server.Authentication;
 using ClientManagedKeys.Server.Services;
 using ClientManagedKeys.Server.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -48,7 +50,7 @@ namespace ClientManagedKeys.Server
                 {
                     Title = "Client Managed Keys",
                     Version = "v1",
-                    Description = Encoding.UTF8.GetString(typeof(Startup).Assembly.GetResourceAsBytes("README.md"))
+                    Description = ReadDocumentationFile("README.md")
                 });
 
                 c.TagActionsBy(description => new List<string>()
@@ -62,7 +64,9 @@ namespace ClientManagedKeys.Server
                 {
                     In = ParameterLocation.Header,
                     Name = "X-Api-Key",
-                    Type = SecuritySchemeType.ApiKey
+                    Type = SecuritySchemeType.ApiKey,
+                    Description = ReadDocumentationFile("authentication.md")
+                    
                 });
 
                 var filePathServer = Path.Combine(AppContext.BaseDirectory, "ClientManagedKeys.Server.xml");
@@ -72,6 +76,11 @@ namespace ClientManagedKeys.Server
                 c.IncludeXmlComments(filePathModels);
 
             });
+        }
+
+        private static string ReadDocumentationFile(string resourceName)
+        {
+            return Encoding.UTF8.GetString(typeof(Startup).Assembly.GetResourceAsBytes(resourceName));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -86,6 +95,8 @@ namespace ClientManagedKeys.Server
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+       
 
             app.UseSwagger();
             app.UseReDoc(c =>

@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RootNamespace>ClientManagedKeys.Server</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,5 +26,7 @@
     <None Remove="SwaggerIntro.md" />
     <EmbeddedResource Include="README.md" />
     <None Remove="DemoKey.pfx" />
+    <None Remove="authentication.md" />
+    <EmbeddedResource Include="authentication.md" />
   </ItemGroup>
 </Project>
