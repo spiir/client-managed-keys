@@ -79,7 +79,7 @@ The corresponding private can be extracted from the PFX file.
 ````shell
 curl --location --request POST 'https://localhost:5001/v1/0e4085c0ae94078ad8992e3fdf6ebffb707ffa8a/sign' \
 --header 'Content-Type: application/json' \
---header 'X-Api-Key: secret1234' \
+--header 'Authorization: Signature keyId=...' \
 --data-raw '{
     "algorithm": "RS256",
     "clientId": "client-9778a952-4f22-4a57-abaa-61f99e14869a",
@@ -102,7 +102,7 @@ Results in the response
 ````shell
 curl --location --request POST 'https://localhost:5001/v1/0e4085c0ae94078ad8992e3fdf6ebffb707ffa8a/decrypt' \
 --header 'Content-Type: application/json' \
---header 'X-Api-Key: secret1234' \
+--header 'Authorization: Signature keyId=...' \
 --data-raw '{
     "algorithm": "RSA-OAEP-256",
     "clientId": "client-9778a952-4f22-4a57-abaa-61f99e14869a",

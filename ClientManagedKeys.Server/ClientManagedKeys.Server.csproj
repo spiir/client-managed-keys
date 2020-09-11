@@ -29,5 +29,7 @@
     <None Remove="DemoKey.pfx" />
     <None Remove="authentication.md" />
     <EmbeddedResource Include="authentication.md" />
+    <None Remove="DemoAuthCert.der" />
+    <EmbeddedResource Include="DemoAuthCert.der" />
   </ItemGroup>
 </Project>

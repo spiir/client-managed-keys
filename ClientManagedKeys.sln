@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientManagedKeys.Server", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientManagedKeys.Models", "ClientManagedKeys.Models\ClientManagedKeys.Models.csproj", "{51908011-7412-450E-ADDF-2196E990BD56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientManagedKeys.Client", "ClientManagedKeys.Client\ClientManagedKeys.Client.csproj", "{BB970380-55F0-4468-A123-028175EB589F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{51908011-7412-450E-ADDF-2196E990BD56}.Release|x64.Build.0 = Release|Any CPU
 		{51908011-7412-450E-ADDF-2196E990BD56}.Release|x86.ActiveCfg = Release|Any CPU
 		{51908011-7412-450E-ADDF-2196E990BD56}.Release|x86.Build.0 = Release|Any CPU
+		{BB970380-55F0-4468-A123-028175EB589F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB970380-55F0-4468-A123-028175EB589F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB970380-55F0-4468-A123-028175EB589F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BB970380-55F0-4468-A123-028175EB589F}.Debug|x64.Build.0 = Debug|Any CPU
+		{BB970380-55F0-4468-A123-028175EB589F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BB970380-55F0-4468-A123-028175EB589F}.Debug|x86.Build.0 = Debug|Any CPU
+		{BB970380-55F0-4468-A123-028175EB589F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB970380-55F0-4468-A123-028175EB589F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB970380-55F0-4468-A123-028175EB589F}.Release|x64.ActiveCfg = Release|Any CPU
+		{BB970380-55F0-4468-A123-028175EB589F}.Release|x64.Build.0 = Release|Any CPU
+		{BB970380-55F0-4468-A123-028175EB589F}.Release|x86.ActiveCfg = Release|Any CPU
+		{BB970380-55F0-4468-A123-028175EB589F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

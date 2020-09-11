@@ -1,1 +1,24 @@
-API Key based scheme will be replaced by HTTP Signatures
+Authentication uses [HTTP Signatures](https://tools.ietf.org/html/draft-ietf-httpbis-message-signatures-00).
+
+The following test certificate has been defined for authenticating using the reference implementation.
+
+````
+-----BEGIN CERTIFICATE-----
+MIICyDCCAbACCQCi+6MS0tfpzDANBgkqhkiG9w0BAQsFADAmMSQwIgYDVQQDDBtO
+b3JkaWMgQVBJIEdhdGV3YXkgQ01LIFRlc3QwHhcNMjAwOTExMTQwODExWhcNMzAw
+OTA5MTQwODExWjAmMSQwIgYDVQQDDBtOb3JkaWMgQVBJIEdhdGV3YXkgQ01LIFRl
+c3QwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDBTLlRgUuAfM9ojGem
+Bym3kuV85FUFxJB+4VgVXHy2FULL3i6lSMOl7aV3ggMIJvAedo6XrWEBcBhA4gHw
+xTr5qGCMJMGUlf4h3/lp1Wi94Mi0HrORtfkduYMIWilkzwnyOPaUcq7/rbtkxyJY
+nPoaK0/dMTVDByhEornsjmIRbStBaCdEplHqZciJyGAX9Vr34C23fr9qJ24h8jEB
+iYvt7ZaUH4D/Qba1G1JlDLIAl93IYZkHijyszMv20YYXVabW1ehT4T/IqZq2nZX1
+MD62odhzZZWvecmRXFtDPe0etDHUyTtVpcTZO6r2WZsxBuxYZ6KDa6j5fSYnDjUP
+IP1rAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAERfyQQ1VGAxJ7pyJ2UABaaeGZu3
+pUXBtmnRfS37Mj+vytC3/ikL/k/GPMNMDz0rEvTtJ5artlD6Mp6s7Df1IHRlT03d
+AzneGUOPQ7MkxF94zixwuCXY/3mFon1GewsI/BAjkzt+NML/zEYu0DKxfBPpRZc4
+khpEGMn4KQ38tewwx/R+E2Md6toHrNQcipu5+zmKeoRMSMQublmaOvan+CnE5R+7
+opi8kfsPbSSJYIn+HiokdoVG2cojpqh/N80xfQ38t4ySIW5fe6fRhHWgRPIry0Ga
+7iVsfDVjODrBXeeETYjuLqLj2u0YfSTzE+gwqPnBaSxd1V677QK8NKvB88c=
+-----END CERTIFICATE-----
+````
+
