@@ -60,11 +60,11 @@ namespace ClientManagedKeys.Server
 
                 c.SchemaFilter<DescribeEnumMemberValues>();
                 
-                c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
+                c.AddSecurityDefinition("HTTP Signature", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
-                    Name = "X-Api-Key",
-                    Type = SecuritySchemeType.ApiKey,
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
                     Description = ReadDocumentationFile("authentication.md")
                     
                 });
@@ -95,9 +95,7 @@ namespace ClientManagedKeys.Server
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-
-       
-
+            
             app.UseSwagger();
             app.UseReDoc(c =>
             {
