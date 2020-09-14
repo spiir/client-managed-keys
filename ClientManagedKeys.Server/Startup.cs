@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using ClientManagedKeys.Server.Authentication;
 using ClientManagedKeys.Server.Services;
 using ClientManagedKeys.Server.Swagger;
+using Dalion.HttpMessageSigning;
+using Dalion.HttpMessageSigning.Verification;
+using Dalion.HttpMessageSigning.Verification.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -37,12 +39,18 @@ namespace ClientManagedKeys.Server
                 .AddJsonOptions(options =>
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverterWithAttributeSupport()));
             
-            services.AddAuthentication(options =>
-                {
-                    options.DefaultAuthenticateScheme = ApiKeyAuthenticationOptions.DefaultScheme;
-                    options.DefaultChallengeScheme = ApiKeyAuthenticationOptions.DefaultScheme;
-                })
-                .AddApiKeySupport(options => {});
+            var authCert = new X509Certificate2(typeof(Startup).Assembly.GetResourceAsBytes("DemoAuthCert.der"));
+
+            services
+                .AddHttpMessageSignatureVerification(
+                    Client.Create(
+                        "f011e0fca818d436a75abf878a31accf1e7d80d4",
+                        "Nordic API Gateway 'Client Managed Keys' Test Client",
+                        SignatureAlgorithm.CreateForVerification(authCert, HashAlgorithmName.SHA256)
+                    )
+                )
+                .AddAuthentication(SignedHttpRequestDefaults.AuthenticationScheme)
+                .AddSignedRequests();
 
             services.AddSwaggerGen(c =>
             {
@@ -60,11 +68,11 @@ namespace ClientManagedKeys.Server
 
                 c.SchemaFilter<DescribeEnumMemberValues>();
                 
-                c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
+                c.AddSecurityDefinition("HTTP Signatures", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
-                    Name = "X-Api-Key",
-                    Type = SecuritySchemeType.ApiKey,
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
                     Description = ReadDocumentationFile("authentication.md")
                     
                 });
@@ -95,9 +103,7 @@ namespace ClientManagedKeys.Server
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-
-       
-
+            
             app.UseSwagger();
             app.UseReDoc(c =>
             {

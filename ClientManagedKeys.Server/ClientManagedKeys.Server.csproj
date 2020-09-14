@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dalion.HttpMessageSigning.Verification.AspNetCore" Version="5.1.0" />
     <PackageReference Include="EnumExtensions.System.Text.Json" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="5.5.1" />
@@ -28,5 +29,7 @@
     <None Remove="DemoKey.pfx" />
     <None Remove="authentication.md" />
     <EmbeddedResource Include="authentication.md" />
+    <None Remove="DemoAuthCert.der" />
+    <EmbeddedResource Include="DemoAuthCert.der" />
   </ItemGroup>
 </Project>
