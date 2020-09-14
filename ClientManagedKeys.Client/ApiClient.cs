@@ -1,3 +1,5 @@
+using System;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,10 +35,51 @@ namespace ClientManagedKeys.Client
             var httpResponse = await _httpClient.PostAsync($"/v1/{keyId}/{operation}",
                 new StringContent(requestBody, Encoding.UTF8, "application/json"));
 
+            if (!httpResponse.IsSuccessStatusCode)
+                throw new ApiClientException(httpResponse.StatusCode);
+
             var responseBody = await httpResponse.Content.ReadAsStringAsync();
 
             return JsonConvert.DeserializeObject<T>(responseBody);
         }
+    }
+    
+    public class ApiClientException : Exception
+    { 
+        public ApiClientException(HttpStatusCode statusCode)
+        {
+            switch (statusCode)
+            {
+              case HttpStatusCode.BadRequest:
+                    Fault = ApiClientFault.BadRequest;
+                    break;
+                case HttpStatusCode.Unauthorized:
+                    Fault = ApiClientFault.Unauthorized;
+                    break;
+                case HttpStatusCode.Forbidden:
+                    Fault = ApiClientFault.Forbidden;
+                    break;
+                case HttpStatusCode.NotFound:
+                    Fault = ApiClientFault.NotFound;
+                    break;
+              case HttpStatusCode.TooManyRequests:
+                    Fault = ApiClientFault.TooManyRequests;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(statusCode), statusCode, null);
+            }
+        }
+
+        public ApiClientFault Fault { get; }
+    }
+
+    public enum ApiClientFault
+    {
+        BadRequest,
+        Unauthorized,
+        Forbidden,
+        NotFound,
+        TooManyRequests
     }
 
     public interface IApiClient
